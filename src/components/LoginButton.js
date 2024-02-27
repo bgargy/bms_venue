@@ -16,10 +16,9 @@ const LoginButton = () => {
             navigate("/home");
         } else {
             // Redirect to the login page if login fails
-            navigate("/"); 
+            navigate("/");
         }
     }
-    
 
     return (
         <div className="container">
