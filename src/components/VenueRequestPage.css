@@ -1,0 +1,38 @@
+.venue-requests-container {
+    padding: 20px;
+}
+
+.request-box {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.request-box h3 {
+    margin-top: 0;
+}
+
+.request-box p {
+    margin: 10px 0;
+}
+
+button {
+    padding: 5px 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:first-of-type {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+button:last-of-type {
+    background-color: #f44336; /* Red */
+    color: white;
+}
