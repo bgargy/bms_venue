@@ -1,0 +1,124 @@
+body {
+    background-color: #333;
+    border: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+.header {
+    margin-bottom: 2rem;
+}
+
+.title {
+    color: wheat;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+
+.developers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.developer {
+    margin: 8px;
+    padding: 15px;
+    border: 2px solid pink;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.developer:hover {
+    transform: scale(1.1);
+}
+
+.developer img {
+    width: 100%;
+    max-width: 110%;
+    border-radius: 50%;
+    height: auto;
+    object-fit: cover;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.developer:hover img {
+    opacity: 0.2;
+}
+
+.developer:hover .name {
+    opacity: 1;
+}
+
+.name {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.about {
+    margin-left: 2rem;
+    width: 100%;
+    max-width: 500px;
+}
+
+.section-title {
+    color: powderblue;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.section-text {
+    color: whitesmoke;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: white;
+    border: 2px solid pink;
+    border-radius: 8px;
+    color: black;
+    z-index: 1;
+}
+
+.modal-content {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    text-align: center;
+    color: black;
+}
+
+.close-btn {
+    color: black;
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 10px;
+}

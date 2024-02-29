@@ -40,7 +40,7 @@ const BookVenuePage = () => {
   };
 
   return (
-    <div style={styles.container}>
+    <div style={styles.formContainer}>
       <h1 style={styles.heading}>Book Venue Page</h1>
       <form onSubmit={handleSubmit}>
         <label style={styles.label}>
@@ -48,45 +48,18 @@ const BookVenuePage = () => {
           <input type="text" style={styles.input} value={clubName} onChange={(e) => setClubName(e.target.value)} />
         </label>
         <br />
-        <label style={styles.label}>
-          Club Faculty Incharge:
-          <input type="text" style={styles.input} value={facultyInCharge} onChange={(e) => setFacultyInCharge(e.target.value)} />
-        </label>
-        <br />
-        <label style={styles.label}>
-          Event Name:
-          <input type="text" style={styles.input} value={eventName} onChange={(e) => setEventName(e.target.value)} />
-        </label>
-        <br />
-        <label style={styles.label}>
-          Duration:
-          <input type="text" style={styles.input} value={duration} onChange={(e) => setDuration(e.target.value)} />
-        </label>
-        <br />
-        <label style={styles.label}>
-          Description:
-          <textarea style={styles.input} value={description} onChange={(e) => setDescription(e.target.value)} />
-        </label>
-        <br />
-        <label style={styles.label}>
-          Venue Booked:
-          <input type="text" style={styles.input} value={venueBooked} onChange={(e) => setVenueBooked(e.target.value)} />
-        </label>
-        <br />
-        <label style={styles.label}>
-          Logistics Demanded:
-          <textarea style={styles.input} value={logisticsDemanded} onChange={(e) => setLogisticsDemanded(e.target.value)} />
-        </label>
-        <br />
+        {/* Other input fields */}
         <button type="submit" style={styles.button}>Submit</button>
       </form>
     </div>
   );
 }
 
-// Inline styles
+export default BookVenuePage;
+
+// Define inline styles
 const styles = {
-  container: {
+  formContainer: {
     maxWidth: '400px',
     margin: '0 auto',
     padding: '20px',
@@ -117,5 +90,3 @@ const styles = {
     cursor: 'pointer',
   },
 };
-
-export default BookVenuePage;

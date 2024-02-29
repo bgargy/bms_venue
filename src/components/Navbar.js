@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ isAdmin }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -16,12 +16,21 @@ const Navbar = () => {
         <li style={liStyle}>
           <Link to="/home" style={linkStyle}>Home</Link>
         </li>
-        <li style={liStyle}>
-          <Link to="/book-venue" style={linkStyle}>Book Venue</Link>
-        </li>
-        <li style={liStyle}>
-          <Link to="/confirm-letter" style={linkStyle}>Confirm Letter</Link>
-        </li>
+        {!isAdmin && (
+          <>
+            <li style={liStyle}>
+              <Link to="/book-venue" style={linkStyle}>Book Venue</Link>
+            </li>
+            <li style={liStyle}>
+              <Link to="/confirm-letter" style={linkStyle}>Confirm Letter</Link>
+            </li>
+          </>
+        )}
+        {isAdmin && (
+          <li style={liStyle}>
+            <Link to="/venue-request" style={linkStyle}>Venue Request</Link>
+          </li>
+        )}
         <li style={{ marginLeft: 'auto', ...liStyle }}> {/* This will push the logout button to the right */}
           <button onClick={handleLogout} style={logoutButtonStyle}>Logout</button>
         </li>
@@ -51,22 +60,20 @@ const linkStyle = {
   color: '#fff', // Set text color to white
   textDecoration: 'none', // Remove underline from links
   fontSize: '18px', // Set font size
-  ffontFamily: 'Poppins, sans-serif',
+  fontFamily: 'Poppins, sans-serif', // Specify font family
   fontWeight: 'bold', // Set font weight to bold
   transition: 'color 0.3s ease', // Add transition effect for color change
 }
-
 
 const logoutButtonStyle = {
   color: '#fff', // Set text color to white
   background: 'none', // Transparent background
   border: 'none', // Remove border
   fontSize: '18px', // Set font size
-  fontFamily: 'Arial, sans-serif', // Specify font family
+  fontFamily: 'Poppins, sans-serif', // Specify font family
   fontWeight: 'bold', // Set font weight to bold
   cursor: 'pointer', // Show pointer cursor on hover
   transition: 'color 0.3s ease', // Add transition effect for color change
 }
-
 
 export default Navbar;

@@ -1,0 +1,72 @@
+/* Home.css */
+.body {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .relative {
+    position: relative;
+  }
+  
+  .background-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 100vh; /* Set the height of the first image to span the viewport */
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: -1;
+  }
+  
+  .about-cs-image {
+    position: absolute;
+    top: 100vh; /* Position the second image below the first image */
+    right: 0;
+    left: 0;
+    height: 100vh; /* Set the height of the second image to span the viewport */
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  #backgroundStyle {
+    padding-top: 200vh; /* Adjust padding to make room for both images and grids */
+  }
+  
+  .title {
+    font-size: 3rem;
+    color: white;
+  }
+  
+  .subtitle {
+    font-size: 2rem;
+    color: white;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 20px;
+  }
+  
+  .factCard {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .factTitle {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .factSubtitle {
+    font-size: 1.2rem;
+  }
+  
