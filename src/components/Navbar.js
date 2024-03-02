@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const Navbar = ({ isAdmin }) => {
+const Navbar = ({ onLogout }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
     // Perform logout actions here, such as clearing user session or local storage
     // For simplicity, let's just redirect back to the login page
-    navigate("/");
+    navigate('/'); // Redirect to login page after logout
   };
 
   return (
@@ -16,21 +16,12 @@ const Navbar = ({ isAdmin }) => {
         <li style={liStyle}>
           <Link to="/home" style={linkStyle}>Home</Link>
         </li>
-        {!isAdmin && (
-          <>
-            <li style={liStyle}>
-              <Link to="/book-venue" style={linkStyle}>Book Venue</Link>
-            </li>
-            <li style={liStyle}>
-              <Link to="/confirm-letter" style={linkStyle}>Confirm Letter</Link>
-            </li>
-          </>
-        )}
-        {isAdmin && (
-          <li style={liStyle}>
-            <Link to="/venue-request" style={linkStyle}>Venue Request</Link>
-          </li>
-        )}
+        <li style={liStyle}>
+          <Link to="/book-venue" style={linkStyle}>Book Venue</Link>
+        </li>
+        <li style={liStyle}>
+          <Link to="/confirm-letter" style={linkStyle}>Confirm Letter</Link>
+        </li>
         <li style={{ marginLeft: 'auto', ...liStyle }}> {/* This will push the logout button to the right */}
           <button onClick={handleLogout} style={logoutButtonStyle}>Logout</button>
         </li>

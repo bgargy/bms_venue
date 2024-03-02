@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./Button.css";
 import videoSource from "./heroVideo.mp4";
 
-const LoginButton = () => {
+const LoginButton = ({ onLogin }) => {
     const navigate = useNavigate();
     const [clubUsername, setClubUsername] = useState("");
     const [clubPassword, setClubPassword] = useState("");
@@ -13,13 +13,14 @@ const LoginButton = () => {
 
     const correctClubUsername = "user123";
     const correctClubPassword = "pass456";
-    const correctAdminUsername = "admin123";
-    const correctAdminPassword = "pass789";
+    const correctAdminUsername = "admin123"; // admin123
+    const correctAdminPassword = "pass789"; //pass789
 
     function clubLogin() {
         if (clubUsername === correctClubUsername && clubPassword === correctClubPassword) {
             // Redirect to the home page for club users after successful login
-            navigate("/home");
+            // navigate("/home");
+            onLogin({ userType: 'club', username: clubUsername });
         } else {
             setError("Invalid club username or password");
         }
@@ -28,7 +29,8 @@ const LoginButton = () => {
     function adminLogin() {
         if (adminUsername === correctAdminUsername && adminPassword === correctAdminPassword) {
             // Redirect to the home page for admin users after successful login
-            navigate("/home");
+            // navigate("/home");
+            onLogin({ userType: 'admin', username: adminUsername });
         } else {
             setError("Invalid admin username or password");
         }
