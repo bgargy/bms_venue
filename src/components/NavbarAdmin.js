@@ -4,17 +4,21 @@ import { Link, useNavigate } from 'react-router-dom';
 const NavbarAdmin = ({ onLogout }) => {
   const navigate = useNavigate();
 
+  const handleLogout = () => {
+    navigate('/'); // Redirect to login page after logout
+  };
+
   return (
     <nav style={navStyle}>
       <ul style={ulStyle}>
         <li style={liStyle}>
-          <Link to="/home" style={linkStyle}>Home</Link>
+          <Link to="/admin" style={linkStyle}>Home</Link>
         </li>
         <li style={liStyle}>
           <Link to="/venue-request" style={linkStyle}>Venue Request</Link>
         </li>
         <li style={{ marginLeft: 'auto', ...liStyle }}>
-          <button onClick={onLogout} style={logoutButtonStyle}>Logout</button>
+          <button onClick={handleLogout} style={logoutButtonStyle}>Logout</button>
         </li>
       </ul>
     </nav>
