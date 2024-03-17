@@ -1,72 +1,166 @@
 /* Home.css */
 .body {
-    background-color: black;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .relative {
-    position: relative;
-  }
-  
-  .background-image {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    height: 100vh; /* Set the height of the first image to span the viewport */
-    width: 100%;
-    object-fit: cover;
-    object-position: center;
-    z-index: -1;
-  }
-  
-  .about-cs-image {
-    position: absolute;
-    top: 100vh; /* Position the second image below the first image */
-    right: 0;
-    left: 0;
-    height: 100vh; /* Set the height of the second image to span the viewport */
-    width: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-  
-  #backgroundStyle {
-    padding-top: 200vh; /* Adjust padding to make room for both images and grids */
-  }
-  
-  .title {
-    font-size: 3rem;
-    color: white;
-  }
-  
-  .subtitle {
-    font-size: 2rem;
-    color: white;
-  }
-  
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    margin-top: 20px;
-  }
-  
-  .factCard {
-    background-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .factTitle {
-    font-size: 2rem;
-    font-weight: bold;
-  }
-  
-  .factSubtitle {
-    font-size: 1.2rem;
-  }
-  
+  background-color: black;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+.relative {
+  position: relative;
+}
+
+.header {
+  margin-bottom: 2rem;
+  color: wheat;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 100vh; /* Set the height of the first image to span the viewport */
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: -1;
+}
+
+.about-cs-image {
+  position: absolute;
+  top: 100vh; /* Position the second image below the first image */
+  right: 0;
+  left: 0;
+  height: 100vh; /* Set the height of the second image to span the viewport */
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+#backgroundStyle {
+  padding-top: 200vh; /* Adjust padding to make room for both images and grids */
+}
+
+.title {
+  font-size: 3rem;
+  color: white;
+}
+
+.main {
+  align: center;
+  background-color: #333;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+}
+
+.developers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.developer {
+  margin: 8px;
+  padding: 15px;
+  border: 2px solid pink;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+}
+
+.developer:hover {
+  transform: scale(1.1);
+}
+
+.developer img {
+  width: 100%;
+  max-width: 110%;
+  border-radius: 50%;
+  height: auto;
+  object-fit: cover;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.developer:hover img {
+  opacity: 0.2;
+}
+
+.developer:hover .name {
+  opacity: 1;
+}
+
+.name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.about {
+  margin-left: 2rem;
+  width: 100%;
+  max-width: 500px;
+  grid-column: span 2; 
+}
+
+.section-title {
+  color: powderblue;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.section-text {
+  align: left;
+  color: whitesmoke;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: white;
+  border: 2px solid pink;
+  border-radius: 8px;
+  color: black;
+  z-index: 1;
+}
+
+.modal-content {
+  background-color: #222;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  text-align: center;
+  color: black;
+}
+
+.close-btn {
+  color: black;
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 10px;
+}
