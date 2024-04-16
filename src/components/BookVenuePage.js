@@ -13,27 +13,38 @@ function BookVenuePage() {
     };
 
     const addEvent = (formData) => {
+        const startTime = new Date(formData.start).toLocaleTimeString('en-US', { hour12: false });
+        const endTime = new Date(formData.end).toLocaleTimeString('en-US', { hour12: false });
+        const eventDate = new Date(formData.start).toISOString().split('T')[0];
+    
         const newEvent = {
-            id: Date.now(),
-            title: formData.title,
+            id: formData.clubName,
             start: formData.start,
             end: formData.end,
+            title: formData.title,
             extendedProps: {
-                clubName: formData.clubName,
                 venueName: formData.venueName,
                 isUserEvent: true,
             },
         };
+    
         setEvents((prevEvents) => [...prevEvents, newEvent]);
         setCurrentEvent(null); // Hide form after adding event
-
+    
+        const eventData = {
+            ...formData,
+            start: startTime, // Convert start time to MySQL-compatible format
+            end: endTime, // Convert end time to MySQL-compatible format
+            date: eventDate,
+        };
+    
         // Send event data to the server
-        fetch('/api/events', {
+        fetch('http://localhost:3001/api/events', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(eventData)
         })
         .then(response => {
             if (response.ok) {
@@ -46,6 +57,7 @@ function BookVenuePage() {
             console.error('Error adding event:', error);
         });
     };
+    
 
     const deleteEvent = (id) => {
         setEvents((prevEvents) => prevEvents.filter((event) => event.id !== id));
@@ -84,10 +96,10 @@ function BookVenuePage() {
 
 function EventForm({ onSubmit, onCancel, event }) {
     const [formData, setFormData] = useState({
+        clubName: 0,
         title: "",
-        clubName: "",
-        start: event.start || "",
-        end: "",
+        start: Date.now(),
+        end: Date.now(),
         venueName: "",
     });
 
@@ -99,10 +111,15 @@ function EventForm({ onSubmit, onCancel, event }) {
         }));
     };
 
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     onSubmit(formData);
+    //     onCancel(); // Hide form after submission
+    // };
     const handleSubmit = (e) => {
         e.preventDefault();
         onSubmit(formData);
-        onCancel(); // Hide form after submission
+        onCancel(); // Hide form after submission
     };
 
     return (
@@ -110,7 +127,7 @@ function EventForm({ onSubmit, onCancel, event }) {
             <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Add Event</h2>
             <form onSubmit={handleSubmit}>
                 <input type="text" name="title" placeholder="Event Name" onChange={handleChange} value={formData.title} required />
-                <input type="text" name="clubName" placeholder="Club Name" onChange={handleChange} value={formData.clubName} required />
+                <input type="text" name="clubName" placeholder="Club Id" onChange={handleChange} value={formData.clubName} required />
                 <input type="datetime-local" name="start" onChange={handleChange} value={formData.start} required />
                 <input type="datetime-local" name="end" onChange={handleChange} value={formData.end} required />
                 <input type="text" name="venueName" placeholder="Venue Name" onChange={handleChange} value={formData.venueName} required />
