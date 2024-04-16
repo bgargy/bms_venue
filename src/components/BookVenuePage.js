@@ -4,9 +4,6 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
-// import "@fullcalendar/daygrid/main.css"; // Import CSS from daygrid plugin
-// import "@fullcalendar/timegrid/main.css"; // Import CSS from timegrid plugin
-
 function BookVenuePage() {
     const [currentEvent, setCurrentEvent] = useState(null);
     const [events, setEvents] = useState([]);
@@ -29,6 +26,25 @@ function BookVenuePage() {
         };
         setEvents((prevEvents) => [...prevEvents, newEvent]);
         setCurrentEvent(null); // Hide form after adding event
+
+        // Send event data to the server
+        fetch('/api/events', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Event added successfully');
+            } else {
+                console.error('Failed to add event');
+            }
+        })
+        .catch(error => {
+            console.error('Error adding event:', error);
+        });
     };
 
     const deleteEvent = (id) => {

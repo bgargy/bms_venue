@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Button.css";
-import videoSource from "./heroVideo.mp4";
+import "./Button.css"; // Ensure this path is correct
+import videoSource from "./heroVideo.mp4"; // Ensure this path is correct
 
 const LoginButton = ({ onLogin }) => {
     const navigate = useNavigate();
@@ -11,30 +11,40 @@ const LoginButton = ({ onLogin }) => {
     const [adminPassword, setAdminPassword] = useState("");
     const [error, setError] = useState("");
 
-    const correctClubUsername = "user123";
-    const correctClubPassword = "pass456";
-    const correctAdminUsername = "admin123"; // admin123
-    const correctAdminPassword = "pass789"; //pass789
+    const loginRequest = async (userType, email, password) => {
+        try {
+            const response = await fetch('http://localhost:3001/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email,
+                    password,
+                    userType
+                }),
+            });
 
-    function clubLogin() {
-        if (clubUsername === correctClubUsername && clubPassword === correctClubPassword) {
-            // Redirect to the home page for club users after successful login
-            // navigate("/home");
-            onLogin({ userType: 'club', username: clubUsername });
-        } else {
-            setError("Invalid club username or password");
+            if (response.ok) {
+                const responseRecieved = await response.json();
+                onLogin(responseRecieved); // Handle successful login
+                navigate(responseRecieved.userInfo === 'admin' ? "/admin" : "/home"); // Redirect based on userType 
+            } else {
+                setError("Invalid username or password");
+            }
+        } catch (error) {
+            console.error("Login request failed", error);
+            setError("Login request failed");
         }
-    }
+    };
 
-    function adminLogin() {
-        if (adminUsername === correctAdminUsername && adminPassword === correctAdminPassword) {
-            // Redirect to the home page for admin users after successful login
-            // navigate("/home");
-            onLogin({ userType: 'admin', username: adminUsername });
-        } else {
-            setError("Invalid admin username or password");
-        }
-    }
+    const clubLogin = () => {
+        loginRequest('club', clubUsername, clubPassword);
+    };
+
+    const adminLogin = () => {
+        loginRequest('admin', adminUsername, adminPassword);
+    };
 
     return (
         <div className="container">
