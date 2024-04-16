@@ -29,10 +29,11 @@ const login = (req, res) => {
             return;
         }
 
+        console.log(userType);
         // Login was successful
        res
         .status(200)
-        .json({ success: true, message: "Login successful", userInfo: query });
+        .json({ success: true, message: "Login successful", userInfo: userType });
     });
 };
 

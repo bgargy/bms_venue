@@ -26,9 +26,9 @@ const LoginButton = ({ onLogin }) => {
             });
 
             if (response.ok) {
-                const userInfo = await response.json();
-                onLogin(userInfo); // Handle successful login
-                navigate(userInfo.userType === 'club' ? "/home" : "/admin"); // Redirect based on userType
+                const responseRecieved = await response.json();
+                onLogin(responseRecieved); // Handle successful login
+                navigate(responseRecieved.userInfo === 'admin' ? "/admin" : "/home"); // Redirect based on userType 
             } else {
                 setError("Invalid username or password");
             }
